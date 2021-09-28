@@ -19,15 +19,25 @@ interface ERC721 {
     // return the number of NFTs owner by '_owner/, posisbly zerp
     event ApprovalForAll(address indexed _owner, address indexed _operator, bool _approved);
 
-    getter balanceOf(address _owner) external view returns(uint256);
-    getter ownerOf(uint256 _tokenId) external view returns(address);
+    getter balanceOf(address _owner) returns(uint256);
+    //returns the balance of the given address
+    getter ownerOf(uint256 _tokenId) returns(address);
+    //returns the owner of the _tokenId 
 
-    onMessage safeTransferFrom(address _from, address _to, uint256 _tokenId) external payable;
-    onMessage transferFrom(address _from, address _to, uint256 _tokenId) external payable;
-    onMessage approve(address _approved, uint256 _tokenId) external payable;
-    onMessage setApprovalForAll(address _operator, bool _approved) external;
-    onMessage getApproved(uint256 _tokenId) external view returns (address);
-    onMessage isApprovedForAll(address _owner, address _operator) external view returns (bool);
+    onMessage safeTransferFrom(address _from, address _to, uint256 _tokenId)  payable;
+    onMessage transferFrom(address _from, address _to, uint256 _tokenId)  payable;
+    onMessage approve(address _approved, uint256 _tokenId)  payable;
+    //approves another address to transfer the given tokenId
+    onMessage setApprovalForAll(address _operator, bool _approved);
+    //sets the approval status depending on the given bool, the operator is allowed to transfer
+    //the tokens 
+    getter getApproved(uint256 _tokenId) returns (address);
+    //returns approved address
+    getter isApprovedForAll(address _owner, address _operator)  returns (bool);
+    //returns if the operator is approved by the owner or not
 
+}
 
+interface ERC165 {
+    getter supportsInterface(bytes4 interfaceID)  returns (bool);
 }
