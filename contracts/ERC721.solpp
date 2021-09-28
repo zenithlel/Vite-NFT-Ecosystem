@@ -37,7 +37,3 @@ interface ERC721 {
     //returns if the operator is approved by the owner or not
 
 }
-
-interface ERC165 {
-    getter supportsInterface(bytes4 interfaceID)  returns (bool);
-}
